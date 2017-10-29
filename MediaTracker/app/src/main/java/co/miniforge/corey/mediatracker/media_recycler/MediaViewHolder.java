@@ -7,6 +7,8 @@ import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import org.json.JSONObject;
+
 import co.miniforge.corey.mediatracker.MediaItemDetailActivity;
 import co.miniforge.corey.mediatracker.MyListActivity;
 import co.miniforge.corey.mediatracker.R;
@@ -19,6 +21,7 @@ import co.miniforge.corey.mediatracker.model.MediaItem;
 public class MediaViewHolder extends RecyclerView.ViewHolder {
     TextView mediaName;
     TextView mediaDescription;
+    public static String jsonInfo;
 
     View inflated;
 
@@ -44,9 +47,12 @@ public class MediaViewHolder extends RecyclerView.ViewHolder {
 
         inflated.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-                //TODO: Create a new activity with this object's data
-                //Hint: mediaItem.toJson().toString() && context.startActivity);
+            public void onClick(View v) {
+                Intent intent  = new Intent(context.getApplicationContext(), MediaDetailActivity.class);
+                jsonInfo = mediaItem.toJson().toString();
+                intent.putExtra(jsonInfo, jsonInfo);
+                context.startActivity(intent);
+
             }
         });
     }
