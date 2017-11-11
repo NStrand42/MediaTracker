@@ -43,7 +43,7 @@ public class MediaDetailActivity extends AppCompatActivity {
         url.setText(mediaItem.url);
         description.setText(mediaItem.description);
         title.setText(mediaItem.title);
-        
+
         onClickListener();
     }
 
