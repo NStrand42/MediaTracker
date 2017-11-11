@@ -14,11 +14,5 @@ public class TVModel extends MediaItem {
     public TVModel(JSONObject jsonObject) {
         super(jsonObject);
 
-        try {
-            currentEpisodesWatched = jsonObject.getInt("currentEpisodesWatched");
-            totalEpisodes = jsonObject.getInt("totalEpisodes");
-        } catch (Exception e) {
-            //TODO: Create exception logger
-        }
     }
 }
