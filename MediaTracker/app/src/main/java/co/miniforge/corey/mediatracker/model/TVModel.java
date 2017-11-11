@@ -6,12 +6,12 @@ import org.json.JSONObject;
  * Created by corey on 10/20/17.
  */
 
-public class TVItem extends MediaItem {
+public class TVModel extends MediaItem {
     //Fields
     public int currentEpisodesWatched;
     public int totalEpisodes;
 
-    public TVItem(JSONObject jsonObject) {
+    public TVModel(JSONObject jsonObject) {
         super(jsonObject);
 
         try {

@@ -13,7 +13,6 @@ import co.miniforge.corey.mediatracker.media_store.Md5IdHelper;
  */
 
 public class MediaItem {
-    public static int defaultId = 0;
 
     public String id;
     public String title;
@@ -32,26 +31,39 @@ public class MediaItem {
             this.description = jsonObject.getString("description");
             this.url = jsonObject.getString("url");
 
-            this.type = getTypeForObject((MediaItemType)jsonObject.get("type"));
+            this.type = getTypeForString(jsonObject.getString("type"));
         } catch (Exception e){
             Log.e("toJSONError", String.format("There was an error: %s", e.getMessage()));
         }
     }
 
     public MediaItem(){
-        this.id = Md5IdHelper.idForObject(defaultId++);
+        this.id = Md5IdHelper.idForObject(this);
         this.title = "defaultTitle";
         this.description = "defaultDescription";
         this.url = "defaultUrl";
     }
 
-    public MediaItemType getTypeForObject(MediaItemType value){
+    private MediaItemType getTypeForString(String value){
         switch (value){
-            case Generic:
-                break;
+            case "TV":
+                return  MediaItemType.TV;
+            case "Movie":
+                return  MediaItemType.Movie;
+            default:
+                return MediaItemType.Generic;
         }
+    }
 
-        return MediaItemType.Generic;
+    private String getStringForType(MediaItemType type){
+        switch (type) {
+            case Movie:
+                return "Movie";
+            case TV:
+                return "TV";
+            default:
+                return "Generic";
+        }
     }
 
     public JSONObject toJson(){
@@ -63,7 +75,7 @@ public class MediaItem {
             mediaItem.put("description", this.description);
             mediaItem.put("url", this.url);
 
-            mediaItem.put("type", this.type);
+            mediaItem.put("type", getStringForType(this.type));
         } catch (Exception e){
             Log.e("toJSONError", String.format("There was an error: %s", e.getMessage()));
         }
