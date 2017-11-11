@@ -38,11 +38,12 @@ public class MediaDetailActivity extends AppCompatActivity {
 
         saveButton = (Button) findViewById(R.id.saveButton);
 
+        intentData();
+
         url.setText(mediaItem.url);
         description.setText(mediaItem.description);
         title.setText(mediaItem.title);
-
-        intentData();
+        
         onClickListener();
     }
 
@@ -57,13 +58,6 @@ public class MediaDetailActivity extends AppCompatActivity {
                 e.printStackTrace();
             }
         }
-    }
-
-    private void bindData() {
-        url.setText(mediaItem.url);
-        description.setText(mediaItem.description);
-        title.setText(mediaItem.title);
-
     }
 
     private void onClickListener() {
